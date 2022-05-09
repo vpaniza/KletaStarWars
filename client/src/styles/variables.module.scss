@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+
+$font-family-header: 'Kanit', sans-serif;
+$font-family-orbitron: 'Orbitron', sans-serif;
+$font-family-body: 'Nunito Sans', sans-serif;
+$font-family-roboto: 'Roboto', sans-serif;
+
+$header-color: #252525;
+$about-color: #3f3f3f;
+
+$tablet-bp: 830px;
+$mobile-medium-bp: 650px;
+$mobile-small-bp: 400px;
+
+$alternative-color: #000000;
+$alternative-color-hover: rgb(36, 36, 36);
+$alternative-color-disabled: #494949;

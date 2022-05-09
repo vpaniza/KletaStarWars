@@ -1,0 +1,147 @@
+@import './variables.module.scss';
+
+.item-section{
+    width: 100%;
+    .item-wrapper{
+        width: 80%;
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        margin: 60px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        height: 350px;
+        padding: 4%;
+        .data{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            .image{
+                width: 34%;
+                background-color: #ecd825;
+                height: 280px;
+            }
+            .content{
+                width: 64%;
+                text-align: left;
+                .title{
+                    font-family: $font-family-orbitron;
+                    font-weight: 700;
+                    font-size: 24px;
+                    line-height: 32px;
+                    margin-bottom: 10px;
+                }
+                .subtitle{
+                    font-family: $font-family-body;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 22px;
+                }
+                .description{
+                    margin-top: 20px;
+                    font-family: $font-family-body;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .button{
+            align-self: flex-end;
+            margin-top: 20px;
+            text-decoration: none;
+            font-family: $font-family-orbitron;
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: 700;
+            background-color: #ecd825;
+            border-radius: 4px;
+            padding: 16px;
+            a{
+                color: #000000;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $tablet-bp){
+    .item-section{
+        .item-wrapper{
+            width: 50%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 40px auto;
+            height: auto;
+            padding: 4%;
+            .data{
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                .image{
+                    width: 70%;
+                    height: 250px;
+                    background-color: #ecd825;
+                }
+                .content{
+                    width: 75%;
+                    text-align: center;
+                    .title{
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: $tablet-bp){
+    .item-section{
+        .item-wrapper{
+            width: 50%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 40px auto;
+            height: auto;
+            padding: 4%;
+            .data{
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                .image{
+                    width: 70%;
+                    height: 250px;
+                    background-color: #ecd825;
+                }
+                .content{
+                    width: 75%;
+                    text-align: center;
+                    .title{
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $mobile-medium-bp ){
+    .item-section{
+        .item-wrapper{
+            width: 70%;
+            min-width: 300px;
+        }
+    }
+}
