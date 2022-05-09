@@ -5,8 +5,8 @@ import { UserContext } from '../context/UserContext';
 import styles from '../styles/login.module.scss';
 
 //const API_BASE_URL = 'http://localhost:5000/';
-const API_BASE_URL = '/';
-//const API_BASE_URL = "https://kleta-star-wars.herokuapp.com/";
+//const API_BASE_URL = '/';
+const API_BASE_URL = "https://kleta-star-wars.herokuapp.com/";
  
 const Login = ({ register }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
