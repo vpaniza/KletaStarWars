@@ -10,14 +10,13 @@ const dotenv = require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 8080;
-//const publicPath = path.join(__dirname, "..", "public");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 };
 
 mongoose.connect(
-  `${"mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PWD+"@star-wars.rucep.mongodb.net/star-wars?retryWrites=true&w=majority"}`,
+  `${"mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PWD+"@"+process.env.MONGO_DB+"?retryWrites=true&w=majority"}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -48,9 +47,14 @@ require("./jwtConfig")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.send({ status: "success" })
-})
+}); */
+
+app.use(express.static(path.resolve(__dirname, "./www/build")));
+app.get("*", function (req, res) {
+  res.sendFile(path.resolve(__dirname, "./www/build", "index.html"));
+});
 
 //////////////////////  ROUTES IMPORT  ///////////////////////
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
@@ -8,14 +8,19 @@ const API_BASE_URL = 'http://localhost:8080/'
  
 const Login = ({ register }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [error, setError] = useState({message: '', statusCode: 200});
+	const [showError, setShowError] = useState(false);
 	const [registerUsername, setRegisterUsername] = useState('');
 	const [registerPassword, setRegisterPassword] = useState('');
 	const [loginUsername, setLoginUsername] = useState('');
 	const [loginPassword, setLoginPassword] = useState('');
-  	const [data, setData] = useState(null);
 	const [showRegisterOption, setShowRegisterOption] = useState(register);
 	const [userContext, setUserContext] = useContext(UserContext);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		handleShowError();
+	}, [error]);
 
 	// Create new user
 	const registerUser = async () => {
@@ -49,10 +54,22 @@ const Login = ({ register }) => {
 			} catch (e) {
 				console.error("Error in storing token in local storage")
 			}
-			navigate("/home");
+			if(resp.status === 200){
+				setError({message: "User login successful", statusCode: 200}); //this actually is no error
+				navigate("/home");
+			}
 		} catch(err){
+			setError({message: err.response.data, statusCode: err.response.status});
 			setIsSubmitting(false);
 			console.error(err);
+		}
+	};
+
+	const handleShowError = () => {
+		if(!isSubmitting && error.statusCode !== 200){
+			setShowError(true);
+		}else if(!isSubmitting && error.statusCode === 200){
+			setShowError(false);
 		}
 	};
 
@@ -69,6 +86,7 @@ const Login = ({ register }) => {
 		if(!showRegisterOption){
 			if(loginUsername.length > 0 && loginPassword.length > 0){
 				loginUser();
+				handleShowError();
 				setLoginUsername("");
 				setLoginPassword("");
 			}
@@ -80,6 +98,9 @@ const Login = ({ register }) => {
 			<div className={styles["formContainer"]}>
 				<form>
 					<h1>{showRegisterOption ? "Register" : "Login"}</h1>
+					{showError && 
+						<p className={styles["error"]}>{error.message}</p>
+					}
 					<input
 						placeholder="Username"
 						value={showRegisterOption ? registerUsername : loginUsername}
@@ -91,7 +112,7 @@ const Login = ({ register }) => {
 						value={showRegisterOption ? registerPassword : loginPassword}
 						onChange={(e) => {!showRegisterOption ? setLoginPassword(e.target.value) : setRegisterPassword(e.target.value)}}
 					/>
-					<button onClick={handleSubmit}>Submit</button>
+					<button onClick={handleSubmit} disabled={isSubmitting ? true : false}>Submit</button>
 					{!showRegisterOption ?
 						<p className={styles["notRegistered"]}>Not registered? <span onClick={(e) => setShowRegisterOption(!showRegisterOption)}>Sign up</span></p>
 						:

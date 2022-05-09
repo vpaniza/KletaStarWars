@@ -4,11 +4,12 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import Item from "../components/Item";
 import Spinner from "../components/Spinner";
+import Unauthorized from "../components/Unauthorized";
 
 const API_BASE_URL = "http://localhost:8080/";
 const API_PEOPLE_URL = `${API_BASE_URL}people/`;
 
-const People = ({}) => {
+const People = () => {
     const [data, setData] = useState({});
     const [userContext, setUserContext] = useContext(UserContext);
     const [homeworld, setHomeworld] = useState();
@@ -83,10 +84,14 @@ const People = ({}) => {
     
     return (
         <>
-            {data && !isLoading ?
-                <Item data={data} type={'people'} starships={starships} homeworld={homeworld}/>
+            {Object.keys(userContext).length > 0 ? (
+                data && !isLoading ?
+                    <Item data={data} type={'people'} starships={starships} homeworld={homeworld}/>
+                    :
+                    <Spinner />
+                )
                 :
-                <Spinner />
+                <Unauthorized />
             }
         </>
       );

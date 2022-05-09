@@ -8,7 +8,7 @@ try {
     const token = window.localStorage.getItem("token")
     initialState = token ? {token: token} : {};
 } catch (err) {
-    console.log(err);
+    console.error(err);
     // If error do nothing.
 }
 

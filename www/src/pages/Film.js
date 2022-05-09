@@ -4,6 +4,7 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import Item from "../components/Item";
 import Spinner from "../components/Spinner";
+import Unauthorized from "../components/Unauthorized";
 
 const API_BASE_URL = "http://localhost:8080/";
 const API_FILMS_URL = `${API_BASE_URL}films/`;
@@ -34,10 +35,14 @@ const Film = () => {
 
   return (
 	<>
-		{data && !isLoading ?
-			<Item data={data} type={'film'} />
+		{Object.keys(userContext).length > 0 ? (
+			data && !isLoading ?
+				<Item data={data} type={'film'} />
+				:
+				<Spinner />
+			)
 			:
-			<Spinner />
+			<Unauthorized />
 		}
 	</>
   );

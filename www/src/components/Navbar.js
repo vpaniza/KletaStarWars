@@ -27,6 +27,17 @@ const NavBar = () => {
                 <ul className={isOpen ? styles['menuWrapperOpen'] : styles['menuWrapper']}>
                     <li onClick={closeMobileMenu}>
                         <HashLink
+                            to="/login" 
+                            spy={true} 
+                            smooth={true} 
+                            duration={500} 
+                            className={styles['scroll']}
+                        >
+                            Login
+                        </HashLink> 
+                    </li>
+                    <li onClick={closeMobileMenu}>
+                        <HashLink
                             to="/home#top" 
                             spy={true} 
                             smooth={true} 

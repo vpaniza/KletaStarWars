@@ -36,7 +36,7 @@ app.post('/login', async (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
         console.log(user)
         if (err) throw err;
-        if (!user) res.send("Some of the input values are wrong");
+        if (!user) res.status(401).send("Some of the input values are wrong");
         else {
             req.logIn(user, { session: false }, (err) => {
                 if (err) throw err;
@@ -53,7 +53,6 @@ app.get('/films', passport.authenticate("jwt", { session: false }), async (req,r
     try {
         const response = await axios.get('https://swapi.dev/api/films/');
         res.send(response.data);
-        console.log(req.user);
     }
     catch (err) {
         console.error(err);

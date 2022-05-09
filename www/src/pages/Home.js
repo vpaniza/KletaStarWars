@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Section from "../components/Section";
 import { UserContext } from "../context/UserContext";
 import Spinner from "../components/Spinner";
+import Unauthorized from "../components/Unauthorized";
 
 const API_BASE_URL = 'http://localhost:8080/';
 const API_FILMS_URL = `${API_BASE_URL}films`;
@@ -70,7 +71,7 @@ const Home = () => {
 
     return (
         <>
-            {userContext.token ? (!isLoading ?
+            {Object.keys(userContext).length > 0 && userContext.token ? (!isLoading ?
                 <div>
                     {filmsData.length > 0 &&
                         <Section items={filmsData} type={'film'} />
@@ -86,9 +87,7 @@ const Home = () => {
                 <Spinner></Spinner>
                 ) 
                 :
-                <div>
-                    <h1>401: You're not authorized. Please log in first</h1>
-                </div>
+                <Unauthorized />
             }
         </>
     )
