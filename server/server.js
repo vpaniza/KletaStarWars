@@ -7,7 +7,7 @@ const express = require("express");
 const passport = require("passport");
 const session = require("express-session");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 
 mongoose.connect(
   `${"mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PWD+"@"+process.env.MONGO_DB+"?retryWrites=true&w=majority"}`,
@@ -20,10 +20,10 @@ mongoose.connect(
   }
 );
 
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: process.env.NODE_ENV === "production" ? "https://star-wars-kleta.herokuapp.com" : "http://localhost:3000",
+  origin: ["http://star-wars-kleta.herokuapp.com", "https://star-wars-kleta.herokuapp.com", "http://localhost:3000", "https://swapi.dev/api", "https://localhost:3000"],
   credentials: true
 }));
 
@@ -35,7 +35,6 @@ app.use(
   })
 );
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 require("./passportConfig")(passport);
 require("./jwtConfig")(passport);
@@ -45,7 +44,8 @@ app.use(passport.session());
 require("./routes/index")(app);
 
 app.use(express.static(path.resolve(__dirname, "../www/build")));
-app.get("*", function (req, res) {
+app.get("/", function (req, res) {
+  console.log(res.headersSent); 
   res.sendFile(path.resolve(__dirname, "../www/build", "index.html"));
 });
 

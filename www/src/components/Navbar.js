@@ -28,7 +28,6 @@ const NavBar = () => {
                     <li onClick={closeMobileMenu}>
                         <HashLink
                             to="/login" 
-                            spy={true} 
                             smooth={true} 
                             duration={500} 
                             className={styles['scroll']}
@@ -39,7 +38,6 @@ const NavBar = () => {
                     <li onClick={closeMobileMenu}>
                         <HashLink
                             to="/home#top" 
-                            spy={true} 
                             smooth={true} 
                             duration={500} 
                             className={styles['scroll']}
@@ -50,7 +48,6 @@ const NavBar = () => {
                     <li onClick={closeMobileMenu}>
                         <HashLink
                             to="/home#film" 
-                            spy={true} 
                             smooth={true} 
                             duration={500} 
                             className={styles['scroll']}
@@ -61,7 +58,6 @@ const NavBar = () => {
                     <li onClick={closeMobileMenu}>
                         <HashLink
                             to="/home#people" 
-                            spy={true} 
                             smooth={true} 
                             duration={500} 
                             className={styles['scroll']}
@@ -72,7 +68,6 @@ const NavBar = () => {
                     <li onClick={closeMobileMenu}>
                         <HashLink
                             to="/home#planet" 
-                            spy={true} 
                             smooth={true} 
                             duration={500} 
                             className={styles['scroll']} 

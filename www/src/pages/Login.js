@@ -4,7 +4,7 @@ import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import styles from './../styles/login.module.scss';
 
-//const API_BASE_URL = 'http://localhost:8080/';
+//const API_BASE_URL = 'http://localhost:5000/';
 const API_BASE_URL = 'https://star-wars-kleta.herokuapp.com/';
  
 const Login = ({ register }) => {
@@ -31,7 +31,7 @@ const Login = ({ register }) => {
 				password: registerPassword
 			}, { withCredentials: true });
 			setIsSubmitting(false);
-			setShowRegisterOption(false);
+			setShowRegisterOption("false");
 			navigate("/login");
 		} catch(err){
 			setIsSubmitting(false);
