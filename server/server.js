@@ -44,7 +44,7 @@ app.use(passport.session());
 require("./routes/index")(app);
 
 app.use(express.static(path.resolve(__dirname, "../www/build")));
-app.get("/", function (req, res) {
+app.get("*", function (req, res) {
   console.log(res.headersSent); 
   res.sendFile(path.resolve(__dirname, "../www/build", "index.html"));
 });
