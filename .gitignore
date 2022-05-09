@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/www/node_modules
+/client/node_modules
 /.pnp
 .pnp.js
 
@@ -10,12 +10,12 @@
 /coverage
 
 # production
-/www/build
+/client/build
 
 # misc
 .DS_Store
 .env
 package-lock.json
-/www/package-lock.json
+/client/package-lock.json
 
 npm-debug.log*
