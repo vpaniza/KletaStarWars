@@ -5,7 +5,8 @@ import { UserContext } from "../context/UserContext";
 import Spinner from "../components/Spinner";
 import Unauthorized from "../components/Unauthorized";
 
-const API_BASE_URL = 'http://localhost:8080/';
+//const API_BASE_URL = 'http://localhost:8080/';
+const API_BASE_URL = 'https://star-wars-kleta.herokuapp.com/';
 const API_FILMS_URL = `${API_BASE_URL}films`;
 const API_PEOPLE_URL = `${API_BASE_URL}people`;
 const API_PLANETS_URL = `${API_BASE_URL}planets`;

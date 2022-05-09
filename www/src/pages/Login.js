@@ -4,7 +4,8 @@ import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import styles from './../styles/login.module.scss';
 
-const API_BASE_URL = 'http://localhost:8080/'
+//const API_BASE_URL = 'http://localhost:8080/';
+const API_BASE_URL = 'https://star-wars-kleta.herokuapp.com/';
  
 const Login = ({ register }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);

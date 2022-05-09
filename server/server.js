@@ -7,7 +7,7 @@ const express = require("express");
 const passport = require("passport");
 const session = require("express-session");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 mongoose.connect(
   `${"mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PWD+"@"+process.env.MONGO_DB+"?retryWrites=true&w=majority"}`,
@@ -45,10 +45,7 @@ app.use(passport.session());
 
 app.use(express.static(path.resolve(__dirname, "../www/build")));
 app.get("*", function (req, res) {
-  res.sendFile(path.resolve(__dirname, "www", "build", "index.html"));
-});
-app.get("/", (req, res) => {
-  res.send({ status: "success" })
+  res.sendFile(path.resolve(__dirname, "../www/build", "index.html"));
 });
 
 //////////////////////  ROUTES IMPORT  ///////////////////////
