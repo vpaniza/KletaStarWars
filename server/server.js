@@ -42,15 +42,11 @@ require("./jwtConfig")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+require("./routes/index")(app);
 
 app.use(express.static(path.resolve(__dirname, "../www/build")));
 app.get("*", function (req, res) {
   res.sendFile(path.resolve(__dirname, "../www/build", "index.html"));
 });
-
-//////////////////////  ROUTES IMPORT  ///////////////////////
-
-const routes = require("./routes");
-app.use("/", routes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
