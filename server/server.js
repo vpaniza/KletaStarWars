@@ -26,7 +26,7 @@ app.use(favicon(__dirname + './../client/build/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ["http://kleta-star-wars.herokuapp.com", "https://kleta-star-wars.herokuapp.com", "http://localhost:5000", "https://swapi.dev/api", "https://localhost:5000"],
+  origin: ["http://kleta-star-wars.herokuapp.com", "https://kleta-star-wars.herokuapp.com", "http://localhost:5000", "https://swapi.dev/api/*", "https://localhost:5000"],
   credentials: true
 }));
 
