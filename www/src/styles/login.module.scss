@@ -1,25 +1,82 @@
+@import "./variables.module.scss";
+
 .container {
     min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.formContainer {
-    width: 200px;
-}
-.error {
-    font-size: 0.8rem;
-    color: #bb0000;
-}
-
-.loginForm {
-    display: flex;
-    flex-direction: column;
-}
-
-.loginFormItem {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .formContainer {
+        width: 340px;
+        form{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            h1{
+                font-size: 24px;
+                line-height: 36px;
+                font-weight: 700;
+                font-family: $font-family-orbitron;
+                color: #ffffff;
+            }
+            h4{
+                width: 90%;
+                color: #ffffff;
+                font-family: $font-family-body;
+                font-size: 12px;
+                line-height: 18px;
+                font-weight: 900; 
+            }
+            input{
+                width: 90%;
+                border-radius: 4px;
+                font-size: 14px;
+                line-height: 22px;
+                padding: 6px;
+                margin: 8px 0;
+                font-family: $font-family-body;
+            }
+            button{
+                font-size: 14px;
+                line-height: 22px;
+                padding: 10px 20px;
+                margin: 20px 0;
+                font-family: $font-family-orbitron;
+                cursor: pointer;
+            }
+            p{
+                width: 90%;
+                color: #ffffff;
+                font-family: $font-family-body;
+                font-size: 12px;
+                line-height: 18px;
+                span{
+                    font-weight: 900;
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .error {
+        font-size: 0.8rem;
+        color: #bb0000;
+    }
+    
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .loginFormItem {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
 }

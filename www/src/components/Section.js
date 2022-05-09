@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import styles from "./../styles/section.module.scss";
 
 const Section = ({ items, type }) => {
-
     return(
         <>
         {items?.length > 0 && type==='film' &&
-            <div className={styles["section"]}>
+            <div className={styles["section"]} id={type}>
                 <h3 className={styles["section-title"]}>Films</h3>
                 <div className={styles["wrapper"]}>
                     {items.map((item,idx) => {
                         return(
                             <div className={styles["item-box"]} key={item.episode_id}>
-                                <Link to={`/films/${idx+1}`}>
+                                <Link to={`/films/${idx+1}`} >
                                     <div className={styles["content"]}>
                                         <h4 className={styles["title"]}>{item.title}</h4>
                                     </div>
@@ -29,7 +28,7 @@ const Section = ({ items, type }) => {
         }
         
         {items?.length > 0 && (type==='people' || type==='planet') &&
-            <div className={styles["section"]}>
+            <div className={styles["section"]} id={type}>
                 <h3 className={styles["section-title"]}>{type==='people' ? 'People' : 'Planets'}</h3>
                 <div className={styles["wrapper"]}>
                     {items.map((item,idx) => {

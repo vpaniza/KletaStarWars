@@ -1,20 +1,56 @@
-const path = require('path');
+const path = require("path");
 const cors = require("cors");
-const express = require('express');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const express = require("express");
+const passport = require("passport");
+const session = require("express-session");
+const dotenv = require('dotenv').config();
+
 const app = express();
 const port = process.env.PORT || 8080;
-const publicPath = path.join(__dirname, '..', 'public');
+//const publicPath = path.join(__dirname, "..", "public");
 
-app.use(express.static(publicPath));
-app.use(cors());
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+};
 
-/* app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-}); */
+mongoose.connect(
+  `${"mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PWD+"@star-wars.rucep.mongodb.net/star-wars?retryWrites=true&w=majority"}`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("Mongoose connected");
+  }
+);
 
-app.get('/api', (req, res) => {
-  res.json({ message: 'Server connected to react' });
-});
+app.use(bodyParser.json())
+
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true
+}));
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(cookieParser(process.env.SESSION_SECRET));
+require("./passportConfig")(passport);
+require("./jwtConfig")(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("/", (req, res) => {
+  res.send({ status: "success" })
+})
 
 //////////////////////  ROUTES IMPORT  ///////////////////////
 

@@ -1,41 +1,18 @@
-/* import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App; */
-
-import './normalize.scss';
+import './styles/normalize.scss';
 import './App.css';
 import {
   BrowserRouter,
   Route,
   Routes
 } from 'react-router-dom';
+import { useState, useContext } from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Film from './pages/Film';
 import People from './pages/People';
 import Planet from './pages/Planet';
+import Header from './components/Header';
+import NavBar from './components/Navbar';
 
 /* const API_BASE_URL = 'http://localhost:8080/';
 const API_FILMS_URL = `${API_BASE_URL}films`;
@@ -47,8 +24,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <NavBar />
+        <Header />
         <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login register={false} />} />
+          <Route path="/register" element={<Login register={true} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/films/:id" element={<Film />} />
           <Route path="/people/:id" element={<People />} />
