@@ -22,7 +22,7 @@ mongoose.connect(
   }
 );
 
-app.use(favicon(__dirname + '../client/build/favicon.ico'));
+app.use(favicon(__dirname + './../client/build/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
@@ -46,10 +46,10 @@ app.use(passport.session());
 
 require("./routes")(app);
 
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(express.static(path.resolve(__dirname, "./../client/build")));
 app.get("*", function (req, res) {
   console.log(res.headersSent); 
-  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "./../client/build/index.html"));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
