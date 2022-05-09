@@ -6,14 +6,8 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const passport = require("passport");
 const session = require("express-session");
-const dotenv = require('dotenv').config();
-
 const app = express();
-const port = process.env.PORT || 8080;
-
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-};
+const port = process.env.PORT || 5000;
 
 mongoose.connect(
   `${"mongodb+srv://"+process.env.MONGO_USER+":"+process.env.MONGO_PWD+"@"+process.env.MONGO_DB+"?retryWrites=true&w=majority"}`,
@@ -29,7 +23,7 @@ mongoose.connect(
 app.use(bodyParser.json())
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: process.env.NODE_ENV === "production" ? "https://star-wars-kleta.herokuapp.com" : "http://localhost:3000",
   credentials: true
 }));
 
@@ -41,19 +35,20 @@ app.use(
   })
 );
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 require("./passportConfig")(passport);
 require("./jwtConfig")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* app.get("/", (req, res) => {
-  res.send({ status: "success" })
-}); */
 
-app.use(express.static(path.resolve(__dirname, "./www/build")));
+app.use(express.static(path.resolve(__dirname, "../www/build")));
 app.get("*", function (req, res) {
-  res.sendFile(path.resolve(__dirname, "./www/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "www", "build", "index.html"));
+});
+app.get("/", (req, res) => {
+  res.send({ status: "success" })
 });
 
 //////////////////////  ROUTES IMPORT  ///////////////////////

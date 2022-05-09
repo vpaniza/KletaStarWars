@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "devStart": "nodemon server/server.js",
     "build": "cd www && npm run build",
     "install-client": "cd www && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "nodemon server/server.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix www\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix www\""
+    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm start --prefix www\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm start --prefix www\""
   },
   "keywords": [],
   "author": "",
