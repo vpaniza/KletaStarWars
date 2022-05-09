@@ -15,7 +15,7 @@
 # misc
 .DS_Store
 .env
-.package-lock.json
+package-lock.json
 /www/package-lock.json
 
 npm-debug.log*
