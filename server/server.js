@@ -23,7 +23,7 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: ["http://star-wars-kleta.herokuapp.com", "https://star-wars-kleta.herokuapp.com", "http://localhost:3000", "https://swapi.dev/api", "https://localhost:3000"],
+  origin: "*", //["http://star-wars-kleta.herokuapp.com", "https://star-wars-kleta.herokuapp.com", "http://localhost:3000", "https://swapi.dev/api", "https://localhost:3000"],
   credentials: true
 }));
 
